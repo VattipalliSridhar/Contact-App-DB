@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ContactListApp</string>
+
+
+    <string name="reg_capture">Photo<font fgcolor="red">*</font></string>
+    <string name="contact_name">Contact Name<font fgcolor="red">*</font></string>
+    <string name="contact_email">Contact Email<font fgcolor="red">*</font></string>
+    <string name="contact_number">Contact Number<font fgcolor="red">*</font></string>
+</resources>
