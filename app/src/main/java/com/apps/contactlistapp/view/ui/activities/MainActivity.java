@@ -53,6 +53,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -128,7 +129,7 @@ public class MainActivity extends BaseActivity {
         layoutBinding = ContactEditLayoutBinding.inflate(getLayoutInflater());
         dialog.setContentView(layoutBinding.getRoot());
         dialog.getWindow().setLayout(width - width / 8, height - height / 4);
-
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         layoutBinding.close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,21 +150,33 @@ public class MainActivity extends BaseActivity {
         layoutBinding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (validation()) {
-                    dbHelper.saveToContactList(layoutBinding.cName.getText().toString().trim(),
+                    boolean checkInsert =  dbHelper.saveToContactList(generateRandomNumber(),layoutBinding.cName.getText().toString().trim(),
                             layoutBinding.cNumber.getText().toString().trim(), layoutBinding.cEmail.getText().toString().trim(),
                             ephoto);
-                    ShowSQLiteDBdata();
+                    if(checkInsert==true)
+                    {
+                        ShowSQLiteDBdata();
+                        showToastMessage("New Contact Inserted");
+                    }else{
+                        showToastMessage("New Contact Not Inserted");
+                    }
+
+
                     dialog.dismiss();
                 }
-
             }
         });
 
 
         dialog.show();
+    }
+    private String generateRandomNumber() {
+        Random r = new Random();
+        int randomNumber = r.nextInt(100);
+        String date_time = getDateTime();
+        String form_id = randomNumber + "-" + date_time;
+        return form_id;
     }
 
     private boolean validation() {
@@ -401,7 +414,7 @@ public class MainActivity extends BaseActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dbHelper.deleteRecord(Constant.TABLE_CONTACT, contactModelArrayList.get(position).getC_id());
+               dbHelper.deleteRecord(Constant.TABLE_CONTACT, contactModelArrayList.get(position).getC_number());
                 ShowSQLiteDBdata();
 
             }
@@ -450,7 +463,7 @@ public class MainActivity extends BaseActivity {
         updateLayoutBinding.close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                dialog1.dismiss();
             }
         });
         updateLayoutBinding.capBtn1.setOnClickListener(new View.OnClickListener() {
@@ -467,11 +480,17 @@ public class MainActivity extends BaseActivity {
 
 
                 if (validation1()) {
-
-                    dbHelper.upDatedData(Constant.TABLE_CONTACT, contactModelArrayList.get(position).getC_id(), updateLayoutBinding.cName.getText().toString().trim(),
+                    boolean checkUpdate =  dbHelper.upDatedData(Constant.TABLE_CONTACT,updateLayoutBinding.cName.getText().toString().trim(),
                             updateLayoutBinding.cNumber.getText().toString().trim(), updateLayoutBinding.cEmail.getText().toString().trim(),
                             ephoto);
-                    ShowSQLiteDBdata();
+                    if(checkUpdate)
+                    {
+                        ShowSQLiteDBdata();
+                        showToastMessage("Entry updated");
+                    }else{
+
+                        showToastMessage("We can not updated mobile number");
+                    }
                     dialog1.dismiss();
                 }
 
@@ -480,6 +499,7 @@ public class MainActivity extends BaseActivity {
 
 
         dialog1.show();
+        dialog1.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
 
     }

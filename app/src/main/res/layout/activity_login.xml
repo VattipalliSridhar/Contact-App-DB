@@ -54,6 +54,19 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15ssp"
+
+        android:layout_marginLeft="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/center_layout"
+        android:text="Pin"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:id="@+id/pin_layout"
@@ -65,13 +78,13 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/center_layout">
+        app:layout_constraintTop_toBottomOf="@id/pin">
 
 
         <EditText
             android:id="@+id/et_otp_one"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:background="@drawable/pin_bg"
@@ -83,8 +96,8 @@
 
         <EditText
             android:id="@+id/et_otp_two"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:background="@drawable/pin_bg"
@@ -96,8 +109,8 @@
 
         <EditText
             android:id="@+id/et_otp_three"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:background="@drawable/pin_bg"
@@ -109,8 +122,8 @@
 
         <EditText
             android:id="@+id/et_otp_four"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:background="@drawable/pin_bg"
